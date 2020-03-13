@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+    - port: 3050 # another port that another pod could use to get access too
+      targetPort: 3000 # same as container port from client pod
+      nodePort: 31515 # we use this port to test it out (30000-32767) (random will be generated if not provided
+  selector:
+    component: web # same a metadata from client pod
